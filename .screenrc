@@ -1,0 +1,37 @@
+ startup_message off
+ defutf8 on
+ caption always
+ caption string "%{kd}%-w%{r}%n.%t%{-}%+w"
+#
+# # show time, IP, uptime etc. in the hardstatus, always
+ hardstatus on
+ hardstatus alwayslastline
+# backtick 1 5 60 /home/erikw/bin/screen/hardstatus.sh 
+ hardstatus string  "[%c:%s] %D %d/%m %Y | %1` | Host: %H% | Load average: %l"
+#
+# # format for displaying time and date in the caption
+ time '[%c:%s] %D %d/%M %Y' 
+#
+# # turn off annoying vbell 'wuff! wuff!'
+ vbell off
+#
+# # unbind C-a q and C-a C-q and bind C-a q to quit
+# bind ^q
+# bind q
+# bind q quit
+#
+# # lock after 30 min of inactivity
+# idle 1800 lockscreen
+#
+# # start screensaver in a new screen after 30 min, reset idle
+# #idle 1800 eval "screen -t screensaver cmatrix -u 10" "idle 0"
+#
+# # set log on all windows (and new ones)
+ deflog on
+#
+# # set log path and filename
+ logfile $HOME/.log/screen/screenlog.%t
+#
+# # max numbers of windows
+# maxwin 10
+termcapinfo xterm-color|xterm|xterms|xs|rxvt|xterm-256color ti@:te@
