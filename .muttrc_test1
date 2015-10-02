@@ -1,0 +1,32 @@
+set my_server       =   mail-service.myoffice.ru:993
+set my_smtp_server  =   mail-service.myoffice.ru
+
+set my_user         =   test1@service.myoffice.ru
+set my_pass         =   "Ce4LMPLfMX"
+set ssl_starttls = yes
+set ssl_force_tls = yes
+set record          =   "imaps://$my_server/INBOX.Sent Items"
+set postponed       =   "imaps://$my_server/INBOX.Drafts"
+
+set from            =   $my_user
+
+# Account - SMTP
+
+set smtp_url        = "smtp://$my_user:$my_pass@$my_smtp_server:587"
+set smtp_pass       = $my_pass
+set imap_user       = $my_user
+set imap_pass       = $my_pass
+
+#
+# Default inbox
+#
+set spoolfile=imaps://$my_server/INBOX
+
+#
+# Default location of mailboxes
+#
+set folder=imaps://$my_server/
+set imap_authenticators="plain"
+set sidebar_visible=no
+set sidebar_width=25
+mailboxes =INBOX =Junk

@@ -1,0 +1,25 @@
+account-hook imap://gmail/ "set
+
+set imap_user = "tsarfin@aprconsulting.ru"
+set imap_pass = "$3mbDs294"
+
+set smtp_url = "smtp://tsarfin@aprconsulting.ru@smtp.gmail.com:587/"
+
+set smtp_pass = "$3mbDs294"
+set from = "tsarfin@aprconsulting.ru"
+set realname = "Vadim Tsarfin"
+
+set folder = "imaps://imap.gmail.com:993"
+set spoolfile = "+INBOX"
+set postponed="+[Gmail]/Drafts"
+
+set header_cache=~/.mutt/cache/headers
+set message_cachedir=~/.mutt/cache/bodies
+#set certificate_file=~/.mutt/certificates
+
+set move = no
+set timeout=15
+auto_view text/html
+#set sort=threads
+set sort_browser=date
+set sort_aux=reverse-last-date-received
