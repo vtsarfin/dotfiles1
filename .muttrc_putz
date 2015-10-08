@@ -8,7 +8,7 @@ set ssl_force_tls = no
 set record          =   "imap://$my_server/INBOX.Sent Items"
 set postponed       =   "imap://$my_server/INBOX.Drafts"
 
-set from            =   $my_user
+set from            =   "Vadim Tsarfin <$my_user>"
 
 # Account - SMTP
 
@@ -31,3 +31,8 @@ set smtp_authenticators="plain"
 set sidebar_visible=no
 set sidebar_width=25
 mailboxes =INBOX =Junk
+set imap_idle="yes"
+set sort = reverse-date-received
+set imap_check_subscribed
+set timeout=10
+source ~/mutt-colors-solarized-dark-256.muttrc
