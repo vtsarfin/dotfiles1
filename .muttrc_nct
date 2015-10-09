@@ -1,0 +1,38 @@
+set my_server       =   mail.ncloudtech.ru
+set my_smtp_server  =   mail.ncloudtech.ru
+set my_user         =   "vadim.tsarfin"
+set my_pass         =   "2283n/S"
+set ssl_starttls = yes
+set ssl_force_tls = no
+set record          =   "imap://$my_server/INBOX.Sent Items"
+set postponed       =   "imap://$my_server/INBOX.Drafts"
+
+set from            =   "Vadim Tsarfin <vadim.tsarfin@ncloudtech.ru>"
+
+# Account - SMTP
+
+set smtp_url        = smtp://$my_user@$my_smtp_server:587/
+set smtp_pass       = $my_pass
+set imap_user       = $my_user
+set imap_pass       = $my_pass
+
+#
+# Default inbox
+#
+set spoolfile=imap://$my_server/INBOX
+
+#
+# Default location of mailboxes
+#
+set folder=imap://$my_server:993/
+#set imap_authenticators="plain"
+#set smtp_authenticators="plain"
+set smtp_authenticators = 'gssapi:login'
+#set sidebar_visible=no
+#set sidebar_width=25
+mailboxes =INBOX =Junk
+set imap_idle="yes"
+set sort = reverse-date-received
+set imap_check_subscribed
+set timeout=10
+source ~/mutt-colors-solarized-dark-256.muttrc
