@@ -4,10 +4,10 @@
  caption string "%{kd}%-w%{r}%n.%t%{-}%+w"
 #
 # # show time, IP, uptime etc. in the hardstatus, always
- hardstatus on
- hardstatus alwayslastline
+# hardstatus on
+# hardstatus alwayslastline
 # backtick 1 5 60 /home/erikw/bin/screen/hardstatus.sh 
- hardstatus string  "[%c:%s] %D %d/%m %Y | %1` | Host: %H% | Load average: %l"
+# hardstatus string  "[%c:%s] %D %d/%m %Y | %1` | Host: %H% | Load average: %l"
 #
 # # format for displaying time and date in the caption
  time '[%c:%s] %D %d/%M %Y' 

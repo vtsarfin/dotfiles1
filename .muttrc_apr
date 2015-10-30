@@ -5,7 +5,7 @@ set imap_pass = "$3mbDs294"
 
 set smtp_url = "smtp://tsarfin@aprconsulting.ru@smtp.gmail.com:587/"
 
-set smtp_pass = "$3mbDs294"
+set smtp_pass = ""
 set from = "tsarfin@aprconsulting.ru"
 set realname = "Vadim Tsarfin"
 

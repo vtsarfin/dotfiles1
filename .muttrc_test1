@@ -2,7 +2,7 @@ set my_server       =   mail-service.myoffice.ru:993
 set my_smtp_server  =   mail-service.myoffice.ru
 
 set my_user         =   test1@service.myoffice.ru
-set my_pass         =   "Ce4LMPLfMX"
+set my_pass         =   ""
 set ssl_starttls = yes
 set ssl_force_tls = yes
 set record          =   "imaps://$my_server/INBOX.Sent Items"

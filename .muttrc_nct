@@ -1,7 +1,7 @@
 set my_server       =   mail.ncloudtech.ru
 set my_smtp_server  =   mail.ncloudtech.ru
 set my_user         =   "vadim.tsarfin"
-set my_pass         =   "2283n/S"
+set my_pass         =   ""
 set ssl_starttls = yes
 set ssl_force_tls = no
 set record          =   "imap://$my_server/INBOX.Sent Items"

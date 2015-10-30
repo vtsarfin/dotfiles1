@@ -2,7 +2,7 @@ set my_server       =   mail.putzmeister.ru
 set my_smtp_server  =   mail.putzmeister.ru
 
 set my_user         =   help@putzmeister.ru
-set my_pass         =   "Qw1313!@"
+set my_pass         =   ""
 set ssl_starttls = no
 set ssl_force_tls = no
 set record          =   "imap://$my_server/INBOX.Sent Items"
