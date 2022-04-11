@@ -11,4 +11,7 @@ return require('packer').startup(function()
     config = function()
         require('lualine').setup()
     end, }
+  -- Collection of configurations for built-in LSP client
+    use 'neovim/nvim-lspconfig'
+    use 'williamboman/nvim-lsp-installer'
 end)
