@@ -1,7 +1,7 @@
 #!/bin/bash
 if [[ `uname`=='Darwin' ]]
 then
-    if  ! brew list| grep  nerd-font 2>&1 > /dev/null
+    if  ! brew list font-hack-nerd-font 2>&1 > /dev/null
     then 
         brew tap homebrew/cask-fonts
         brew install --cask font-hack-nerd-font
