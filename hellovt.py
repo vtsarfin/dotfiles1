@@ -19,5 +19,7 @@ print(list(ebani_rot.keys())[:-1]);
 print(len([ebani_rot['gavno']]));
 n_list=[n for n in ebani_rot.values() if n % 2 == 1]
 print(n_list);
-
+print("sdsd");
+for i in range(6):
+    print("huy")
 
