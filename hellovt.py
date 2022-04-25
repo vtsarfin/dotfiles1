@@ -22,4 +22,8 @@ print(n_list);
 print("sdsd");
 for i in range(6):
     print("huy")
-
+    print(i);
+i=1;
+while i<=3:
+    print("anus");
+    i+=1
