@@ -15,7 +15,7 @@ copy_config()
         if [[ -d ~/.config/$config_dir ]] 
         then 
             mkdir -pv ./.config/$config_dir
-            cp -av "~/.config/$config_dir" ./.config
+            cp -av ~/.config/$config_dir ./.config
         fi
     fi
 }
