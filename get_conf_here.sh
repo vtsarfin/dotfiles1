@@ -4,17 +4,19 @@ Linux_config_list="
     kitty
     nvim
     zsh/.zprezto/runcoms
-    "
+"
 Darwin_config_list="
     nvim
-    "
+"
 copy_config()
 {
-    if [[ `uname`=='Linux' ]]
-    then
-        if [[ -d ~/.config/$config_dir ]] 
-        then 
+    if [[ -d ~/.config/$config_dir ]] 
+    then 
+        if [[ "$config_dir" =~ "prezto" ]]
+        then
             mkdir -pv ./.config/$config_dir
+            cp -av ~/.config/$config_dir ./.config/zsh/.zprezto/
+        else
             cp -av ~/.config/$config_dir ./.config
         fi
     fi
