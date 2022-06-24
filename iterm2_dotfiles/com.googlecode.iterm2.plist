@@ -565,7 +565,7 @@
 			<key>Name</key>
 			<string>vtnew1</string>
 			<key>Non Ascii Font</key>
-			<string>HackNerdFontCompleteM-Regular 12</string>
+			<string>HackNerdFontCompleteM-Regular 14</string>
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
@@ -618,6 +618,8 @@
 			<integer>388</integer>
 			<key>Transparency</key>
 			<real>0.0</real>
+			<key>Unicode Version</key>
+			<integer>8</integer>
 			<key>Unlimited Scrollback</key>
 			<true/>
 			<key>Use Bold Font</key>
