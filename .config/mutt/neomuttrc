@@ -4,6 +4,9 @@
 # This file purposely doesn't include hooks, keybinding, macros, colors, etc.
 # Read the manual, explore, and have fun!
 #
+bind index g noop
+bind index gg first-entry
+bind index G last-entry
 
 ###############
 # Identity
@@ -44,6 +47,7 @@ set smtp_pass=$imap_pass
 
 
 set folder = imaps://imap.collabio.team/
+mailboxes =Junk =JIRA =Confluence
 set spool_file = "+INBOX"
 unset record                # Gmail auto-stores in "+[Gmail].Sent Mail"
 unset trash                 # Unset, deletion will remove labels
@@ -114,4 +118,13 @@ set query_command = "/usr/bin/lbdbq"
 #set crypt_opportunistic_encrypt
 #set postpone_encrypt
 source ~/.config/mutt/mutt-colors-solarized-dark-256.muttrc
+set signature = ~/.config/mutt/signature_nct.txt
+#sidebar
 set sidebar_visible=yes
+set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+set mail_check_stats
+bind index,pager B sidebar-toggle-visible
+bind index,pager \Ck sidebar-prev
+bind index,pager \Cj sidebar-next
+bind index,pager \Cl sidebar-open
+

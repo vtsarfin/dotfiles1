@@ -14,7 +14,7 @@ application/excel; /Users/vts1/.config/mutt/view_attachment.sh %s
 application/msexcel; /Users/vts1/.config/mutt/view_attachment.sh %s
 application/vnd.ms-exc; /Users/vts1/.config/mutt/view_attachment.sh %s
 application/vnd.ms-excel; /Users/vts1/.config/mutt/view_attachment.sh %s
-
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; /Users/vts1/.config/mutt/view_attachment.sh %s
 # MS Word
 # use textedit to open .doc files as it's more light-weight
 application/msword; /Users/vts1/.config/mutt/view_attachment.sh %s "-" '/Applications/TextEdit.app'
