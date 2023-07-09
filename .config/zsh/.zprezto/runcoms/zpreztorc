@@ -10,7 +10,7 @@
 #
 
 # Set case-sensitivity for completion, history lookup, etc.
-# zstyle ':prezto:*:*' case-sensitive 'yes'
+zstyle ':prezto:*:*' case-sensitive 'yes'
 
 # Color output (auto set to 'no' on dumb terminals).
 zstyle ':prezto:*:*' color 'yes'
@@ -139,7 +139,7 @@ zstyle ':prezto:module:prompt' theme 'sorin'
 
 # Set the prompt to display the return code along with an indicator for non-zero
 # return codes. This is not supported by all prompts.
-# zstyle ':prezto:module:prompt' show-return-val 'yes'
+zstyle ':prezto:module:prompt' show-return-val 'no'
 
 #
 # Python
@@ -173,7 +173,7 @@ zstyle ':prezto:module:prompt' theme 'sorin'
 #
 
 # Set the SSH identities to load into the agent.
-# zstyle ':prezto:module:ssh:load' identities 'id_rsa' 'id_rsa2' 'id_github'
+zstyle ':prezto:module:ssh:load' identities 'id_rsa' 'id_rsa2' 'id_github'
 
 #
 # Syntax Highlighting
@@ -204,16 +204,16 @@ zstyle ':prezto:module:prompt' theme 'sorin'
 #
 
 # Auto set the tab and window titles.
-# zstyle ':prezto:module:terminal' auto-title 'yes'
+zstyle ':prezto:module:terminal' auto-title 'yes'
 
 # Set the window title format.
-# zstyle ':prezto:module:terminal:window-title' format '%n@%m: %s'
+ zstyle ':prezto:module:terminal:window-title' format '%n@%m: %s'
 
 # Set the tab title format.
-# zstyle ':prezto:module:terminal:tab-title' format '%m: %s'
+ zstyle ':prezto:module:terminal:tab-title' format '%m: %s'
 
 # Set the terminal multiplexer title format.
-# zstyle ':prezto:module:terminal:multiplexer-title' format '%s'
+ zstyle ':prezto:module:terminal:multiplexer-title' format '%s'
 
 #
 # Tmux

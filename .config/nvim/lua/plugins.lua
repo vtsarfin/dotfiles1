@@ -3,7 +3,6 @@ local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
   packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
--- require'lspconfig'.pyright.setup{}
 return require('packer').startup(function()
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
@@ -28,7 +27,7 @@ return require('packer').startup(function()
   --  For vsnip users.
   use 'hrsh7th/cmp-vsnip'
   use 'hrsh7th/vim-vsnip'
-
+  use {"ellisonleao/glow.nvim", config = function() require("glow").setup() end}
 -- Setup nvim-cmp.
   local cmp = require'cmp'
   cmp.setup({
@@ -124,6 +123,7 @@ require'lspconfig'.terraformls.setup{}
 --  pattern = {"*.tf", "*.tfvars"},
 --  callback = vim.lsp.buf.format(),
 -- })
+
 end
 )
 
