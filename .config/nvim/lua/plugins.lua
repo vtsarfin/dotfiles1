@@ -119,11 +119,12 @@ return require('packer').startup(function()
     },
   }
 require'lspconfig'.terraformls.setup{}
--- vim.api.nvim_create_autocmd({"BufWritePre"}, {
---  pattern = {"*.tf", "*.tfvars"},
---  callback = vim.lsp.buf.format(),
--- })
-
+vim.api.nvim_create_autocmd({"BufWritePre"}, {
+  pattern = {"*.tf", "*.tfvars"},
+  callback = function()
+    vim.lsp.buf.format()
+  end,
+})
 end
 )
 
