@@ -40,4 +40,3 @@ eval "$(register-python-argcomplete pipx)"
 . <(kubectl completion zsh)
 #
 complete -C 'aws_completer' aws
-ssh-add -q ~/AK/cg/*rsa
