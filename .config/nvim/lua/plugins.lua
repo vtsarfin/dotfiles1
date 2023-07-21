@@ -3,13 +3,13 @@ local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
   packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
-return require('packer').startup(function()
+return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
   use { 'nvim-lualine/lualine.nvim',
   requires = {'kyazdani42/nvim-web-devicons', opt = true},
   config = function()
-    require('lualine').setup()
+    require('lualine').setup({})
   end, }
   use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons',
     config = function()
@@ -28,6 +28,7 @@ return require('packer').startup(function()
   use 'hrsh7th/cmp-vsnip'
   use 'hrsh7th/vim-vsnip'
   use {"ellisonleao/glow.nvim", config = function() require("glow").setup() end}
+  use 'hashivim/vim-terraform'
 -- Setup nvim-cmp.
   local cmp = require'cmp'
   cmp.setup({
@@ -119,13 +120,22 @@ return require('packer').startup(function()
     },
   }
 require'lspconfig'.terraformls.setup{}
+vim.cmd([[let g:terraform_fmt_on_save=1]])
+vim.cmd([[let g:terraform_align=1]])
 vim.api.nvim_create_autocmd({"BufWritePre"}, {
   pattern = {"*.tf", "*.tfvars"},
   callback = function()
     vim.lsp.buf.format()
   end,
 })
+use({
+  "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+  config = function()
+    require("lsp_lines").setup()
+  end,
+})
 end
+
 )
 
 
