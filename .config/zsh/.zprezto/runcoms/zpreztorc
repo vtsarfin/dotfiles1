@@ -31,7 +31,6 @@ zstyle ':prezto:load' pmodule-dirs ${ZDOTDIR}/.zprezto-contrib
 # Set the Prezto modules to load (browse modules).
 # The order matters.
 zstyle ':prezto:load' pmodule \
-  'ssh'\
   'environment' \
   'terminal' \
   'editor' \
@@ -42,8 +41,8 @@ zstyle ':prezto:load' pmodule \
   'completion' \
   'history-substring-search' \
   'prompt' \
-  'terraform' 
-
+  'terraform' \
+  'ssh'
 #
 # Autosuggestions
 #
@@ -176,7 +175,7 @@ zstyle ':prezto:module:prompt' show-return-val 'no'
 #
 
 # Set the SSH identities to load into the agent.
-zstyle ':prezto:module:ssh:load' identities 'id_rsa' 'id_rsa2' 'id_github' ~/AK/cg/*rsa
+zstyle ':prezto:module:ssh:load' identities 'id_rsa' 'id_rsa2' 'id_github' "AK/cg/*rsa"
 
 #
 # Syntax Highlighting

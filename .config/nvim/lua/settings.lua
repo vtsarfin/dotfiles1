@@ -80,4 +80,9 @@ vim.keymap.set(
   require("lsp_lines").toggle,
   { desc = "Toggle lsp_lines" }
 )
+vim.keymap.set(
+ "",
+ "<Leader>f",
+ ":TerraformFmt<CR>"
+)
 
