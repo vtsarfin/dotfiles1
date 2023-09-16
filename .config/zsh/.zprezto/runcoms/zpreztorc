@@ -42,7 +42,7 @@ zstyle ':prezto:load' pmodule \
   'history-substring-search' \
   'prompt' \
   'terraform' \
-  'ssh'
+  'ssh' 
 #
 # Autosuggestions
 #
@@ -175,7 +175,7 @@ zstyle ':prezto:module:prompt' show-return-val 'no'
 #
 
 # Set the SSH identities to load into the agent.
-zstyle ':prezto:module:ssh:load' identities 'id_rsa' 'id_rsa2' 'id_github' "AK/cg/*rsa"
+zstyle ':prezto:module:ssh:load' identities 'id_rsa' 'id_rsa2' 'id_github'  "*rsa" "*pem"
 
 #
 # Syntax Highlighting

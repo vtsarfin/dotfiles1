@@ -74,15 +74,6 @@ augroup end
 vim.diagnostic.config({
   virtual_text = false,
 })
-vim.keymap.set(
-  "",
-  "<Leader>l",
-  require("lsp_lines").toggle,
-  { desc = "Toggle lsp_lines" }
-)
-vim.keymap.set(
- "",
- "<Leader>f",
- ":TerraformFmt<CR>"
-)
-
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.foldenable = false

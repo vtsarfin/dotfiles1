@@ -7,17 +7,44 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
   use { 'nvim-lualine/lualine.nvim',
-  requires = {'kyazdani42/nvim-web-devicons', opt = true},
-  config = function()
+    requires = {'kyazdani42/nvim-web-devicons', opt = true},
+    config = function()
     require('lualine').setup({})
   end, }
-  use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons',
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    requires = {
+      'mitchellh/tree-sitter-hcl',
+    },
     config = function()
-        require("bufferline").setup{}
-    end, }
-  -- Collection of configurations for built-in LSP client
-  use 'nvim-treesitter/nvim-treesitter'
-  --    use 'williamboman/nvim-lsp-installer'
+
+      require("configs.treesitter")
+    end,
+    run = function()
+      local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+      ts_update()
+    end,
+  }
+  use {
+      'stevearc/conform.nvim',
+      config = function() require('conform').setup(
+{
+    format_on_save = {
+        -- These options will be passed to conform.format()
+        timeout_ms = 500,
+        lsp_fallback = true,
+    },
+        formatters_by_ft = {
+          lua = { "stylua" },
+          -- Conform will run multiple formatters sequentially
+          python = { "isort", "black" },
+          -- Use a sub-list to run only the first available formatter
+          javascript = { { "prettierd", "prettier" } },
+        },
+      })
+    end
+  }
+-- use 'williamboman/nvim-lsp-installer'
   use 'neovim/nvim-lspconfig'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'
@@ -119,7 +146,9 @@ return require('packer').startup(function(use)
       },
     },
   }
-require'lspconfig'.terraformls.setup{}
+require'lspconfig'.terraformls.setup{
+  cmd = { "terraform-ls", "serve", "-log-file /dev/null" }
+}
 vim.cmd([[let g:terraform_fmt_on_save=1]])
 vim.cmd([[let g:terraform_align=1]])
 vim.api.nvim_create_autocmd({"BufWritePre"}, {
@@ -137,7 +166,6 @@ use({
 end
 
 )
-
 
 
 
