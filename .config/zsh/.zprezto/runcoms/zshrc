@@ -43,7 +43,6 @@ alias k=kubectl
 complete -o default -F __start_kubectl k
 #
 complete -C 'aws_completer' aws
-FPATH=~/.zsh/functions:$FPATH
 autoload -Uz compinit && compinit
 
 #if type brew &>/dev/null; then
@@ -51,3 +50,5 @@ autoload -Uz compinit && compinit
 #    autoload -Uz compinit >/dev/null 2>&1
 #    compinit >/dev/null 2>&1
 #fi
+compdef _argo argo
+source <(argo completion zsh)

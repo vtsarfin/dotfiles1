@@ -1,23 +1,29 @@
 local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  packer_bootstrap = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
+    install_path })
 end
+local has_words_before = function()
+  unpack = unpack or table.unpack
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
+end
+
 return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
   use { 'nvim-lualine/lualine.nvim',
-    requires = {'kyazdani42/nvim-web-devicons', opt = true},
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
     config = function()
-    require('lualine').setup({})
-  end, }
+      require('lualine').setup({})
+    end, }
   use {
     'nvim-treesitter/nvim-treesitter',
     requires = {
       'mitchellh/tree-sitter-hcl',
     },
     config = function()
-
       require("configs.treesitter")
     end,
     run = function()
@@ -26,25 +32,26 @@ return require('packer').startup(function(use)
     end,
   }
   use {
-      'stevearc/conform.nvim',
-      config = function() require('conform').setup(
-{
-    format_on_save = {
-        -- These options will be passed to conform.format()
-        timeout_ms = 500,
-        lsp_fallback = true,
-    },
-        formatters_by_ft = {
-          lua = { "stylua" },
-          -- Conform will run multiple formatters sequentially
-          python = { "isort", "black" },
-          -- Use a sub-list to run only the first available formatter
-          javascript = { { "prettierd", "prettier" } },
-        },
-      })
+    'stevearc/conform.nvim',
+    config = function()
+      require('conform').setup(
+        {
+          format_on_save = {
+            -- These options will be passed to conform.format()
+            timeout_ms = 500,
+            lsp_fallback = true,
+          },
+          formatters_by_ft = {
+            lua = { "stylua" },
+            -- Conform will run multiple formatters sequentially
+            python = { "isort", "black" },
+            -- Use a sub-list to run only the first available formatter
+            javascript = { { "prettierd", "prettier" } },
+          },
+        })
     end
   }
--- use 'williamboman/nvim-lsp-installer'
+  -- use 'williamboman/nvim-lsp-installer'
   use 'neovim/nvim-lspconfig'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'
@@ -54,10 +61,10 @@ return require('packer').startup(function(use)
   --  For vsnip users.
   use 'hrsh7th/cmp-vsnip'
   use 'hrsh7th/vim-vsnip'
-  use {"ellisonleao/glow.nvim", config = function() require("glow").setup() end}
+  use { "ellisonleao/glow.nvim", config = function() require("glow").setup() end }
   use 'hashivim/vim-terraform'
--- Setup nvim-cmp.
-  local cmp = require'cmp'
+  -- Setup nvim-cmp.
+  local cmp = require 'cmp'
   cmp.setup({
     snippet = {
       -- REQUIRED - you must specify a snippet engine
@@ -78,6 +85,25 @@ return require('packer').startup(function(use)
       ['<C-Space>'] = cmp.mapping.complete(),
       ['<C-e>'] = cmp.mapping.abort(),
       ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+      ['<Tab>'] = function(fallback)
+        if not cmp.select_next_item() then
+          if vim.bo.buftype ~= 'prompt' and has_words_before() then
+            cmp.complete()
+          else
+            fallback()
+          end
+        end
+      end,
+
+      ['<S-Tab>'] = function(fallback)
+        if not cmp.select_prev_item() then
+          if vim.bo.buftype ~= 'prompt' and has_words_before() then
+            cmp.complete()
+          else
+            fallback()
+          end
+        end
+      end,
     }),
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
@@ -123,8 +149,8 @@ return require('packer').startup(function(use)
   require('lspconfig')['pyright'].setup {
     capabilities = capabilities
   }
-  require'lspconfig'.perlpls.setup{}
-  require'lspconfig'.lua_ls.setup {
+  require 'lspconfig'.perlpls.setup {}
+  require 'lspconfig'.lua_ls.setup {
     settings = {
       Lua = {
         runtime = {
@@ -133,7 +159,7 @@ return require('packer').startup(function(use)
         },
         diagnostics = {
           -- Get the language server to recognize the `vim` global
-          globals = {'vim'},
+          globals = { 'vim' },
         },
         workspace = {
           -- Make the server aware of Neovim runtime files
@@ -146,30 +172,40 @@ return require('packer').startup(function(use)
       },
     },
   }
-require'lspconfig'.terraformls.setup{
-  cmd = { "terraform-ls", "serve", "-log-file /dev/null" }
-}
-vim.cmd([[let g:terraform_fmt_on_save=1]])
-vim.cmd([[let g:terraform_align=1]])
-vim.api.nvim_create_autocmd({"BufWritePre"}, {
-  pattern = {"*.tf", "*.tfvars"},
-  callback = function()
-    vim.lsp.buf.format()
-  end,
-})
-use({
-  "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-  config = function()
-    require("lsp_lines").setup()
-  end,
-})
+  require 'lspconfig'.yamlls.setup {
+    on_attach = on_attach,
+    capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+    settings = {
+      yaml = {
+        schemaStore = {
+          url = "https://www.schemastore.org/api/json/catalog.json",
+          enable = true,
+        },
+        validate = true,
+        format = { enable = true },
+        hover = true,
+        schemas = require("configs.schemas"),
+      }
+    }
+  }
+  -- vim.lsp.set_log_level("debug")
+  require 'lspconfig'.terraformls.setup {
+    cmd = { "terraform-ls", "serve", "-log-file /dev/null" }
+  }
+  vim.cmd([[let g:terraform_fmt_on_save=1]])
+  vim.cmd([[let g:terraform_align=1]])
+  vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+    pattern = { "*.tf", "*.tfvars" },
+    callback = function()
+      vim.lsp.buf.format()
+    end,
+  })
+  use({
+    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    config = function()
+      require("lsp_lines").setup()
+    end,
+  })
 end
 
 )
-
-
-
-
-
-
-
