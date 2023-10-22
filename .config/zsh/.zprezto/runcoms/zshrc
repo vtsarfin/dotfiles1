@@ -1,3 +1,5 @@
+zmodload zsh/zprof
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -13,6 +15,7 @@ fi
 
 # Customize to your needs...
 alias bbuu='brew update && brew upgrade'
+alias all="argo logs @latest"
 setopt clobber
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
@@ -22,16 +25,6 @@ prompt powerlevel10k
 
 # Created by `pipx` on 2022-10-29 23:16:30
 export PATH="$PATH:/Users/vts1/.local/bin"
-#
-#if command -v pyenv 1>/dev/null 2>&1; then
-#  eval "$(pyenv init -)"
-#fi
-#if command -v pyenv 1>/dev/null 2>&1; then
-#  eval "$(pyenv init -)"
-#fi
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)" 
 autoload -U bashcompinit
 bashcompinit
 eval "$(register-python-argcomplete pipx)"

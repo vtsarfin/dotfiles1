@@ -1,7 +1,12 @@
 local schemas = {
-  kubernetes = "k8s/**/*.yaml",
+  kubernetes = { "k8s/**/*.yaml",
+    "*volume*/*.yaml",
+    "*claim*.yaml"
+  },
   ["https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"] = { "*-wf*.yaml",
-    "*flow*" },
+    "*flow*",
+    "*fact*.yaml",
+  },
   ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
   -- ["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
   -- ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
