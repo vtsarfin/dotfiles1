@@ -23,7 +23,7 @@ copy_config()
     fi
 }
 config_dirs="${system}_config_list"
-echo $config_dirs
+echo -e $config_dirs"\n"
 for config_dir in ${!config_dirs}
 do
     copy_config
