@@ -1,7 +1,10 @@
 local schemas = {
   kubernetes = { "k8s/**/*.yaml",
     "*volume*/*.yaml",
-    "*claim*.yaml"
+    "*claim*.yaml",
+    "*ecret*.yaml",
+    "*svc*.yaml",
+    "*ing*.yaml"
   },
   ["https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"] = { "*-wf*.yaml",
     "*flow*",

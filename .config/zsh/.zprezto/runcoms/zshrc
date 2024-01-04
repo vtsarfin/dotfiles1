@@ -24,7 +24,7 @@ promptinit
 prompt powerlevel10k
 
 # Created by `pipx` on 2022-10-29 23:16:30
-export PATH="$PATH:/Users/vts1/.local/bin"
+export PATH="/Users/vts1/prj/bin:/opt/homebrew/Cellar/gnu-sed/4.9/libexec/gnubin:$PATH:/Users/vts1/.local/bin"
 autoload -U bashcompinit
 bashcompinit
 eval "$(register-python-argcomplete pipx)"
@@ -45,3 +45,4 @@ autoload -Uz compinit && compinit
 #fi
 compdef _argo argo
 source <(argo completion zsh)
+. <(helm completion zsh)
