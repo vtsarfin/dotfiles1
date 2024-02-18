@@ -33,21 +33,41 @@ return require('packer').startup(function(use)
   }
   use {
     'stevearc/conform.nvim',
+    -- Set this value to true to silence errors when formatting a block fails
+    -- require("conform.formatters.injected").options.ignore_errors = false
     config = function()
       require('conform').setup(
         {
-          format_on_save = {
-            -- These options will be passed to conform.format()
-            timeout_ms = 500,
-            lsp_fallback = true,
-          },
+                  -- format_on_save = {
+          --   -- These options will be passed to conform.format()
+          --   timeout_ms = 500,
+          --   lsp_fallback = true,
+          -- },
           formatters_by_ft = {
             lua = { "stylua" },
             -- Conform will run multiple formatters sequentially
             python = { "isort", "black" },
             -- Use a sub-list to run only the first available formatter
-            javascript = { { "prettierd", "prettier" } },
+            -- javascript = { { "prettierd", "prettier" } },
+            yaml = { "yamlfix" },
+            sh = { "beautysh" }
           },
+          formatters = {
+            -- yamllint = {
+            --   -- command = "yamllint -c ~/.config/yamllint/config"
+            -- },
+            yamlfix = {
+              command = "yamlfix",
+              inherit = true,
+              env = {
+                YAMLFIX_preserve_quotes = "true",
+                -- YAMLFIX_SEQUENCE_STYLE = "block_style"
+              },
+            },
+            injected = {
+              ignore_errors = false
+            }
+          }
         })
     end
   }
@@ -149,6 +169,7 @@ return require('packer').startup(function(use)
   require('lspconfig')['pyright'].setup {
     capabilities = capabilities
   }
+  require'lspconfig'.bashls.setup{}
   require 'lspconfig'.perlpls.setup {}
   require 'lspconfig'.lua_ls.setup {
     settings = {
@@ -206,6 +227,12 @@ return require('packer').startup(function(use)
       require("lsp_lines").setup()
     end,
   })
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end
+  }
 end
 
 )
