@@ -13,6 +13,27 @@ end
 return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
+  use { "junegunn/fzf", run = "./install --bin" }
+  use { "ibhagwan/fzf-lua",
+  -- optional for icon support
+  requires = { "nvim-tree/nvim-web-devicons" }
+  }
+  use "nvim-lua/plenary.nvim"
+  use { "TimUntersberger/neogit",
+  config = function()
+      require("neogit").setup({
+   kind = "split", -- opens neogit in a split 
+   signs = {
+    -- { CLOSED, OPENED }
+    section = { "", "" },
+    item = { "", "" },
+    hunk = { "", "" },
+   },
+   integrations = { diffview = true }, -- adds integration with diffview.nvim
+  })
+ end,
+}
+  use {"sindrets/diffview.nvim" }
   use { 'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
     config = function()
