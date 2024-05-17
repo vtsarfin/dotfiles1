@@ -46,3 +46,10 @@ compdef _argo argo
 source <(argo completion zsh)
 . <(helm completion zsh)
 . <(k9s completion zsh)
+if type rg &> /dev/null; then
+  export FZF_DEFAULT_COMMAND='rg --files'
+  export FZF_DEFAULT_OPTS='-m --height 50% --border'
+fi
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /opt/homebrew/bin/terraform terraform

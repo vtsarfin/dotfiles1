@@ -13,10 +13,14 @@ end
 return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
+  use { 'tpope/vim-fugitive' }
   use { "junegunn/fzf", run = "./install --bin" }
   use { "ibhagwan/fzf-lua",
   -- optional for icon support
-  requires = { "nvim-tree/nvim-web-devicons" }
+  requires = { "nvim-tree/nvim-web-devicons" },
+  config=function()
+  require("fzf-lua").setup({ "fzf-vim" })
+end,
   }
   use "nvim-lua/plenary.nvim"
   use { "TimUntersberger/neogit",
@@ -33,7 +37,18 @@ return require('packer').startup(function(use)
   })
  end,
 }
-  use {"sindrets/diffview.nvim" }
+  use {"sindrets/diffview.nvim",
+    config = function ()
+      require("diffview").setup({
+        view = {
+          default = {
+             layout = "diff2_horizontal_ba",
+          },
+        },
+      }
+      )
+    end
+  }
   use { 'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
     config = function()
