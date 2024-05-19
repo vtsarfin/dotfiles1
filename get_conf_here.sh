@@ -8,6 +8,7 @@ Linux_config_list="
 Darwin_config_list="
     nvim
     zsh/.zprezto/runcoms
+    mac
 "
 copy_config()
 {
