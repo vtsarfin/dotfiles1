@@ -42,7 +42,7 @@ end,
       require("diffview").setup({
         view = {
           default = {
-             layout = "diff2_horizontal_ba",
+          --   layout = "diff2_horizontal_ba",
           },
         },
       }
