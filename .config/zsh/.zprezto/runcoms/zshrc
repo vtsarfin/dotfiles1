@@ -23,11 +23,6 @@ autoload -Uz promptinit
 promptinit
 prompt powerlevel10k
 
-# Created by `pipx` on 2022-10-29 23:16:30
-export PATH="/Users/vts1/prj/bin:/opt/homebrew/Cellar/gnu-sed/4.9/libexec/gnubin:$PATH:/Users/vts1/.local/bin"
-autoload -U bashcompinit
-bashcompinit
-eval "$(register-python-argcomplete pipx)"
 #
 #. <(minikube completion zsh)
 . <(kubectl completion zsh)
@@ -53,3 +48,14 @@ fi
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
+export DIRENV_LOG_FORMAT=
+eval "$(direnv hook zsh)"
+source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+  autoload -Uz compinit
+  compinit
+fi
